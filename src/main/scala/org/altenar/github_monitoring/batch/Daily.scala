@@ -107,9 +107,9 @@ object Daily extends App with Logging {
     .appName("Test application")
     .config("spark.driver.bindAddress", "127.0.0.1")
     .getOrCreate()
-
-  val sourceDataFolder = "/Users/andreimaiorov/Desktop/source_data/*"
+  
   val config = ConfigFactory.load(ConfigFactory.parseFile(new File("src/main/resources/application_daily.conf")))
+  val sourceDataFolder = config.getString("source_data_folder")
   val targetUri = config.getString("clickhouse_uri")
   val targetUser = config.getString("clickhouse_user")
   val targetPassword = config.getString("clickhouse_password")
